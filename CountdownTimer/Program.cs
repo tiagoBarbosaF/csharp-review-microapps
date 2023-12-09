@@ -1,4 +1,5 @@
 ﻿
-using CountdownTimer.Main;
 
-await Main.Start();
+
+// await MainCountdown.Start();
+Console.WriteLine("test");

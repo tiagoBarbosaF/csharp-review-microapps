@@ -5,10 +5,13 @@ namespace DataAccess.Data;
 
 public class DataContextSqlite : DbContext
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public DataContextSqlite(DbContextOptions<DataContextSqlite> options) : base(options)
     {
-        optionsBuilder.UseSqlite("Data Source=DefaultDB.db");
     }
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //     optionsBuilder.UseSqlite("Data Source=DefaultDB.db");
+    // }
 
     public DbSet<Product> Products { get; set; }
 }

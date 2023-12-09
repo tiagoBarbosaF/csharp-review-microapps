@@ -6,8 +6,8 @@ public partial class TimerUtils
 {
     [GeneratedRegex("^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$")]
     private static partial Regex MyRegex();
-    
-    public static async Task TimerMenus()
+
+    public static void TimerMenus()
     {
         while (true)
         {
@@ -23,7 +23,7 @@ public partial class TimerUtils
                 Console.WriteLine("Invalid option...");
                 continue;
             }
-            
+
             Console.Write("\nEnter a timer from countdown (hh:mm:ss): ");
             var timer = Console.ReadLine()!;
 
@@ -37,9 +37,9 @@ public partial class TimerUtils
                 {
                     Console.Clear();
                     Console.Write(rest);
-                    await Task.Delay(decrement);
+                    Thread.Sleep(decrement);
                 }
-                
+
                 Console.WriteLine("Timer finish!!");
             }
             else
