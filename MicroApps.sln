@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfacesProject", "Interf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseReview", "DatabaseReview\DatabaseReview.csproj", "{1B53A72F-DD48-46BB-B25B-A9FF163D2456}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApisWithEf", "ApisWithEf\ApisWithEf.csproj", "{A1C4A5A2-CA68-400A-943C-35DD1F32A747}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{1B53A72F-DD48-46BB-B25B-A9FF163D2456}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B53A72F-DD48-46BB-B25B-A9FF163D2456}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B53A72F-DD48-46BB-B25B-A9FF163D2456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1C4A5A2-CA68-400A-943C-35DD1F32A747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C4A5A2-CA68-400A-943C-35DD1F32A747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C4A5A2-CA68-400A-943C-35DD1F32A747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C4A5A2-CA68-400A-943C-35DD1F32A747}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

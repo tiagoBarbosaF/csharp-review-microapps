@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ApisWithEf\ApisWithEf.csproj" />
       <ProjectReference Include="..\CountdownTimer\CountdownTimer.csproj" />
       <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
       <ProjectReference Include="..\DatabaseReview\DatabaseReview.csproj" />

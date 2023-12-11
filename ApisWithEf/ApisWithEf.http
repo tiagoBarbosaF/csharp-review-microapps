@@ -1,0 +1,48 @@
+@ApisWithEf_HostAddress = http://localhost:5095
+@idProduct = 1
+@idCategory = 1
+
+### GET categories
+GET {{ApisWithEf_HostAddress}}/v1/categories
+Accept: application/json
+Content-Type: application/json
+
+### POST category
+POST {{ApisWithEf_HostAddress}}/v1/categories
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Electronics"
+}
+
+### GET products
+# @no-log
+GET {{ApisWithEf_HostAddress}}/v1/products
+Accept: application/json
+Content-Type: application/json
+
+### GET product by id
+# @no-log
+GET {{ApisWithEf_HostAddress}}/v1/products/{{idProduct}}
+Accept: application/json
+Content-Type: application/json
+
+### GET product by category id
+# @no-log
+GET {{ApisWithEf_HostAddress}}/v1/products/categories/{{idCategory}}
+Accept: application/json
+Content-Type: application/json
+
+### POST product
+# @no-log
+POST {{ApisWithEf_HostAddress}}/v1/products
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Product 1",
+  "description": "Test product 1",
+  "price": 50.50,
+  "categoryId": 1
+}
