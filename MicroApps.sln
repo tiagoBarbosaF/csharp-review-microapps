@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseReview", "DatabaseR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApisWithEf", "ApisWithEf\ApisWithEf.csproj", "{A1C4A5A2-CA68-400A-943C-35DD1F32A747}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCalculator", "SimpleCalculator\SimpleCalculator.csproj", "{85AE0F92-76C0-4BE7-B978-A0F0278E8282}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{A1C4A5A2-CA68-400A-943C-35DD1F32A747}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1C4A5A2-CA68-400A-943C-35DD1F32A747}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1C4A5A2-CA68-400A-943C-35DD1F32A747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85AE0F92-76C0-4BE7-B978-A0F0278E8282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85AE0F92-76C0-4BE7-B978-A0F0278E8282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85AE0F92-76C0-4BE7-B978-A0F0278E8282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85AE0F92-76C0-4BE7-B978-A0F0278E8282}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
