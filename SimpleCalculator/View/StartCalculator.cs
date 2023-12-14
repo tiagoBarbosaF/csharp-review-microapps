@@ -1,4 +1,5 @@
 using SimpleCalculator.Models;
+using SimpleCalculator.Models.Enums;
 
 namespace SimpleCalculator.View;
 
@@ -11,36 +12,39 @@ public class StartCalculator
             MenuOptions.Menu();
             var getOptions = MenuOptions.MenuGetOptions();
 
-            if (getOptions.Equals("0")) break;
+            if (getOptions is OperationTypes.Exit) break;
 
             switch (getOptions)
             {
-                case "1":
-                    var numberOptions = MenuOptions.GetNumberOptions(getOptions);
-                    Console.WriteLine($"\nResult: {new Sum().Operation(numberOptions)}");
+                case OperationTypes.Sum:
+                    var numberOptions = MenuOptions.GetNumberOptions(OperationTypes.Sum);
+                    Console.WriteLine($"\nResult: {new Sum().Operation(numberOptions):F}");
                     break;
-                case "2":
-                    numberOptions = MenuOptions.GetNumberOptions(getOptions);
+                case OperationTypes.Subtraction:
+                    numberOptions = MenuOptions.GetNumberOptions(OperationTypes.Subtraction);
                     Console.WriteLine($"\nResult: {new Subtraction().Operation(numberOptions):F}");
                     break;
-                case "3":
-                    numberOptions = MenuOptions.GetNumberOptions(getOptions);
+                case OperationTypes.Multiply:
+                    numberOptions = MenuOptions.GetNumberOptions(OperationTypes.Multiply);
                     Console.WriteLine($"\nResult: {new Multiply().Operation(numberOptions):F}");
                     break;
-                case "4":
-                    numberOptions = MenuOptions.GetNumberOptions(getOptions);
+                case OperationTypes.Division:
+                    numberOptions = MenuOptions.GetNumberOptions(OperationTypes.Division);
                     Console.WriteLine($"\nResult: {new Division().Operation(numberOptions):F}");
                     break;
-                case "5":
-                    numberOptions = MenuOptions.GetNumberOptions(getOptions);
+                case OperationTypes.Mod:
+                    numberOptions = MenuOptions.GetNumberOptions(OperationTypes.Mod);
                     Console.WriteLine($"\nResult: {new Mod().Operation(numberOptions):F}");
                     break;
-                case "6":
-                    numberOptions = MenuOptions.GetNumberOptions(getOptions);
+                case OperationTypes.SquareRoot:
+                    numberOptions = MenuOptions.GetNumberOptions(OperationTypes.SquareRoot);
                     Console.WriteLine($"\nResult: {new SquareRoot().Operation(numberOptions):F}");
                     break;
+                case OperationTypes.Historic:
+                    Console.WriteLine($"\n-- Historic --\n{Historic.GetHistoric()}");
+                    break;
                 default:
-                    Console.WriteLine("Invalid operation...");
+                    Console.WriteLine("Invalid operation, choose one of the operations in the Menu...");
                     break;
             }
         }
