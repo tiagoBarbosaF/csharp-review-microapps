@@ -1,5 +1,7 @@
+using SimpleCalculator.Handlers;
 using SimpleCalculator.Models;
 using SimpleCalculator.Models.Enums;
+using SimpleCalculator.Models.Interfaces;
 
 namespace SimpleCalculator.View;
 
@@ -14,38 +16,26 @@ public class StartCalculator
 
             if (getOptions is OperationTypes.Exit) break;
 
-            switch (getOptions)
+            if (getOptions is OperationTypes.Historic)
+                if (Historic.CheckHistoricEmpty())
+                    Console.WriteLine("\nHistoric Empty!!");
+                else
+                {
+                    Console.WriteLine("\nHistoric:\n");
+                    Historic.GetHistoric();
+                }
+            else if (getOptions is OperationTypes.CleanHistoric)
             {
-                case OperationTypes.Sum:
-                    var numberOptions = MenuOptions.GetNumberOptions(OperationTypes.Sum);
-                    Console.WriteLine($"\nResult: {new Sum().Operation(numberOptions):F}");
-                    break;
-                case OperationTypes.Subtraction:
-                    numberOptions = MenuOptions.GetNumberOptions(OperationTypes.Subtraction);
-                    Console.WriteLine($"\nResult: {new Subtraction().Operation(numberOptions):F}");
-                    break;
-                case OperationTypes.Multiply:
-                    numberOptions = MenuOptions.GetNumberOptions(OperationTypes.Multiply);
-                    Console.WriteLine($"\nResult: {new Multiply().Operation(numberOptions):F}");
-                    break;
-                case OperationTypes.Division:
-                    numberOptions = MenuOptions.GetNumberOptions(OperationTypes.Division);
-                    Console.WriteLine($"\nResult: {new Division().Operation(numberOptions):F}");
-                    break;
-                case OperationTypes.Mod:
-                    numberOptions = MenuOptions.GetNumberOptions(OperationTypes.Mod);
-                    Console.WriteLine($"\nResult: {new Mod().Operation(numberOptions):F}");
-                    break;
-                case OperationTypes.SquareRoot:
-                    numberOptions = MenuOptions.GetNumberOptions(OperationTypes.SquareRoot);
-                    Console.WriteLine($"\nResult: {new SquareRoot().Operation(numberOptions):F}");
-                    break;
-                case OperationTypes.Historic:
-                    Console.WriteLine($"\n-- Historic --\n{Historic.GetHistoric()}");
-                    break;
-                default:
-                    Console.WriteLine("Invalid operation, choose one of the operations in the Menu...");
-                    break;
+                Historic.ClearHistoric();
+                Console.WriteLine("Historic cleaned!");
+            }
+            else
+            {
+                var executeOperations = OperationsHandler.ExecuteOperations(getOptions);
+                var resultOperation =
+                    executeOperations.Operation(MenuOptions.GetNumberOptions(getOptions)).ToString("F");
+
+                Console.WriteLine($"\nResult: {resultOperation}");
             }
         }
     }

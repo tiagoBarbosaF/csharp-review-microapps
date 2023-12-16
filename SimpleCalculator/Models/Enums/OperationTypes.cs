@@ -9,5 +9,6 @@ public enum OperationTypes
     Mod = 5,
     SquareRoot = 6,
     Historic = 7,
+    CleanHistoric = 8,
     Exit = 0
 }

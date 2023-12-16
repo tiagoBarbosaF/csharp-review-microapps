@@ -20,6 +20,7 @@ public class MenuOptions
                           $"\t      {(int)OperationTypes.Mod} - {OperationTypes.Mod}\n" +
                           $"\t      {(int)OperationTypes.SquareRoot} - {OperationTypes.SquareRoot}\n" +
                           $"\t      {(int)OperationTypes.Historic} - {OperationTypes.Historic}\n" +
+                          $"\t      {(int)OperationTypes.CleanHistoric} - {OperationTypes.CleanHistoric}\n" +
                           $"\t      {(int)OperationTypes.Exit} - {OperationTypes.Exit}\n" +
                           $"\t{titleBar}\n\n" +
                           $"{menuBar}");
@@ -31,20 +32,17 @@ public class MenuOptions
         var option = int.Parse(Console.ReadLine()!);
 
         if (Enum.IsDefined(typeof(OperationTypes), option))
-        {
             return (OperationTypes)option;
-        }
-        else
-        {
-            Console.WriteLine("Invalid operation. Please enter a valid option.");
-            return OperationTypes.Exit;
-        }
+        
+        Console.WriteLine("Invalid operation. Please enter a valid option.");
+        return OperationTypes.Exit;
     }
 
     public static Dictionary<string, decimal> GetNumberOptions(OperationTypes option)
     {
-        var i = (decimal)0;
+        var i = 0;
         var numberOptions = new Dictionary<string, decimal>();
+        var listOfValues = new List<decimal>();
         const string pattern = @"^[0-9]+(\.[0-9]+)?$";
 
         while (true)
@@ -61,7 +59,8 @@ public class MenuOptions
             Console.Write($"Enter the value (s - exit): ");
             var readOption = Console.ReadLine()!;
 
-            if (readOption.ToLower().Equals("s")) break;
+            if (readOption.ToLower().Equals("s"))
+                break;
 
             if (!Regex.IsMatch(readOption, pattern))
             {
@@ -70,11 +69,20 @@ public class MenuOptions
             }
 
             num = decimal.Parse(readOption);
-            numberOptions.Add($"num{++i}", num);
-            Historic.HistoricOperations[$"{option}"] = (int)option;
-            Historic.DictionaryHistoric.Add($"num{++i}", num);
+            numberOptions.Add($"{++i}", num);
+            listOfValues.Add(num);
         }
 
+        var values = string.Join(", ", listOfValues.ToList());
+        if (Historic.CheckHistoricEmpty())
+            Historic.AddHistoric(new KeyValuePair<int, string>(++i, option.ToString()), values);
+        else
+        {
+            var lastHistoricKey = Historic.GetLastHistoricKey();
+            Historic.AddHistoric(new KeyValuePair<int, string>(lastHistoricKey.Key.Key + 1, option.ToString()), values);
+        }
+
+        listOfValues.Clear();
         return numberOptions;
     }
 }
