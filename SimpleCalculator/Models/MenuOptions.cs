@@ -28,12 +28,17 @@ public class MenuOptions
 
     public static OperationTypes MenuGetOptions()
     {
+        const string pattern = @"^[0-9]$";
         Console.Write($"\nEnter the option: ");
-        var option = int.Parse(Console.ReadLine()!);
+        var option = Console.ReadLine()!;
 
+        if (!Regex.IsMatch(option, pattern))
+            return OperationTypes.Error;
+
+        var optionParse = int.Parse(option);
         if (Enum.IsDefined(typeof(OperationTypes), option))
-            return (OperationTypes)option;
-        
+            return (OperationTypes)optionParse;
+
         Console.WriteLine("Invalid operation. Please enter a valid option.");
         return OperationTypes.Exit;
     }
@@ -41,6 +46,7 @@ public class MenuOptions
     public static Dictionary<string, decimal> GetNumberOptions(OperationTypes option)
     {
         var i = 0;
+        var indexType = 0;
         var numberOptions = new Dictionary<string, decimal>();
         var listOfValues = new List<decimal>();
         const string pattern = @"^[0-9]+(\.[0-9]+)?$";
@@ -75,7 +81,7 @@ public class MenuOptions
 
         var values = string.Join(", ", listOfValues.ToList());
         if (Historic.CheckHistoricEmpty())
-            Historic.AddHistoric(new KeyValuePair<int, string>(++i, option.ToString()), values);
+            Historic.AddHistoric(new KeyValuePair<int, string>(++indexType, option.ToString()), values);
         else
         {
             var lastHistoricKey = Historic.GetLastHistoricKey();

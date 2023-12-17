@@ -1,7 +1,7 @@
 using SimpleCalculator.Handlers;
 using SimpleCalculator.Models;
 using SimpleCalculator.Models.Enums;
-using SimpleCalculator.Models.Interfaces;
+using SimpleCalculator.Services;
 
 namespace SimpleCalculator.View;
 
@@ -9,6 +9,8 @@ public class StartCalculator
 {
     public static void Start()
     {
+        FileService.InitializeFile();
+
         while (true)
         {
             MenuOptions.Menu();
@@ -16,14 +18,17 @@ public class StartCalculator
 
             if (getOptions is OperationTypes.Exit) break;
 
+            if (getOptions is OperationTypes.Error)
+            {
+                Console.WriteLine("Enter a valid Option from menu!");
+                continue;
+            }
+
             if (getOptions is OperationTypes.Historic)
-                if (Historic.CheckHistoricEmpty())
-                    Console.WriteLine("\nHistoric Empty!!");
-                else
-                {
-                    Console.WriteLine("\nHistoric:\n");
-                    Historic.GetHistoric();
-                }
+            {
+                Console.WriteLine("\nHistoric:");
+                Historic.GetHistoric();
+            }
             else if (getOptions is OperationTypes.CleanHistoric)
             {
                 Historic.ClearHistoric();

@@ -10,5 +10,6 @@ public enum OperationTypes
     SquareRoot = 6,
     Historic = 7,
     CleanHistoric = 8,
+    Error = 99,
     Exit = 0
 }
